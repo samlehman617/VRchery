@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/0.8.2/aframe.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"> </script>
+  <!-- <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.js"></script> -->
+  <!-- <script src="https://unpkg.com/aframe-fps-counter-component/dist/aframe-fps-counter-component.min.js"></script> -->
+  <!-- <script src="https://unpkg.com/aframe-fps-look-controls-component/dist/aframe-fps-look-controls-component.min.js"></script> -->
+
+  <!-- <script src="https://unpkg.com/aframe-seek-position-component/dist/aframe-seek-position-component.min.js"></script> -->
+  <!-- <script src="https://rawgit.com/protyze/aframe-curve-component/master/dist/aframe-curve-component.min.js"></script> -->
+  <!-- <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script> -->
+  <!-- <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script> -->
+
+  <script src="init.js"></script>
+  <!-- <script src="game.js"></script> -->
+
+  <title>VRchery</title>
+</head>
+
+<body>
+  <a-scene id="world" physics arjs>
+    <!-- HUD -->
+    <div id="HUD" class="HUD">
+      <button title="Score" text="Score: ">Score</button>
+    </div>
+
+    <!-- OBJECTS -->
+    <a-cylinder id="target" position="0 .5 -20" rotation="90 0 0" radius="1" height=".25" color="#EFEFEF" static-body material="roughness: 0.95">
+      <a-cylinder radius="0.8" color="black" height="0.3" material="roughness: 0.95">
+        <a-cylinder radius="0.6" height=".35" color="blue" material="roughness: 0.95">
+          <a-cylinder radius="0.4" height="0.4" color="yellow" material="roughness: 0.95">
+            <a-cylinder radius="0.2" height="0.45" color="red" material="roughness: 0.95"></a-cylinder>
+          </a-cylinder>
+        </a-cylinder>
+      </a-cylinder>
+    </a-cylinder>
+
+    <!-- ENVIRONMENT -->
+    <a-sky id="sky" rotation="0 -90 0" static-body friction="1" restitution="0" material="src: #env">
+    </a-sky>
+
+    <a-assets>
+      <!-- ASSETS -->
+      <a-asset-item id="bow" src="assets/bow.gltf"></a-asset-item>
+      <img id="grass" src="assets/grass.jpg" crossorigin="anonymous">
+      <img id="sky" src="assets/sky.jpg" crossorigin="anonymous" />
+      <img id="env" src="assets/environment.jpg" crossorigin="anonymous" />
+    </a-assets>
+
+    <!-- CAMERA -->
+    <a-entity id="cam" camera="active:true" look-controls wasd-controls position="0 0 -2">
+
+      <!-- ARROW -->
+      <a-cylinder id="arrow" position="-0.11 -0.2 -0.8" rotation="90 0 0" radius="0.01" height="1.5" color="brown" static-body>
+        <a-cone id="tip" color="black" radius-bottom=".025" rotation="0 0 180" height="0.25" position="0 -0.75 0">
+          <a-entity id="ray" raycaster="showLine: true; direction: 0 0 100; interval:200" rotation="-90 0 0" far="100" line="color:white; opacity:0.5"></a-entity>
+        </a-cone>
+      </a-cylinder>
+      <!-- BOW -->
+      <!-- <a-entity id="bow" gltf-model="#bow" position=".04 -1.5 0.25 " rotation="0 -90 0 "></a-entity> -->
+      <a-entity id="bow" gltf-model="#bow" position="0.25 -1.65 0.5" rotation="0 259 0 "></a-entity>
+      <!-- CURSOR -->
+      <a-entity id="cursor" cursor="fuse: true; fuseTimeout: 500" position="0 0 -2" geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015"
+        material="color: white; shader: flat; opacity:0.4">
+        <a-animation begin="click" easing="ease-in" attribute="scale" dur="150" fill="forwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+        <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500" fill="backwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+      </a-entity>
+
+    </a-entity>
+
+  </a-scene>
+</body>
+
+</html>
