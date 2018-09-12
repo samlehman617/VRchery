@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/samlehman617/VRchery/issues"
   },
-  "homepage": "https://github.com/samlehman617/VRchery#readme"
+  "homepage": "https://samlehman617.github.io/VRchery/",
+  "devDependencies": {
+    "gh-pages": "^1.2.0"
+  }
 }
