@@ -1,9 +1,8 @@
 <h1 align="center">
   VRchery
-  <br />
-  <p align="center">A VR archery experience using AFrame and WebXR.</p>
 </h1>
-<br />
+
+<p align="center">A VR archery experience using AFrame and WebXR.</p>
 
 <div align="center">
   <a href="https://travis-ci.org/samlehman617/VRchery">
